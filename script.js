@@ -16,47 +16,46 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(newBook);
 }
 
-const output = "";
+addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
 
 addBookBtn.addEventListener("click", () => {
-    const getTitle = document.getElementById("title-input").value;
-    const getAuthor = document.getElementById("author-input").value;
-    const getPages = document.getElementById("pages-input").value;
-    const getRead = document.getElementById("read-input").checked;
-    addBookToLibrary(getTitle, getAuthor, getPages, getRead);
+  const getTitle = document.getElementById("title-input").value;
+  const getAuthor = document.getElementById("author-input").value;
+  const getPages = document.getElementById("pages-input").value;
+  const getRead = document.getElementById("read-input").checked;
+  addBookToLibrary(getTitle, getAuthor, getPages, getRead);
 
-    if (getTitle == "" || getAuthor == "" || getPages == "") {
-        alert("Please fill in all fields.");
-        return;
-    } else {
-        renderLibrary();
-    }
+  if (getTitle == "" || getAuthor == "" || getPages == "") {
+    alert("Please fill in all fields.");
+    return;
+  } else {
+    renderLibrary();
+  }
 });
 
 const renderLibrary = () => {
-    const libraryContainer = document.getElementById("library-container");
+  const libraryContainer = document.getElementById("library-container");
 
-    libraryContainer.innerHTML = "";
+  libraryContainer.innerHTML = "";
 
-    myLibrary.forEach((book) => {
-        const card = document.createElement("div");
+  myLibrary.forEach((book) => {
+    const card = document.createElement("div");
 
-        card.innerHTML = `<h2>${book.title}</h2>
-                          <p>Author: ${book.author}</p>
-                          <p>Pages: ${book.pages}</p>
-                          <p>Read: ${book.read ? "Yes" : "No"}</p>`;
+    card.innerHTML = `<h2>${book.title}</h2>
+                      <p>Author: ${book.author}</p>
+                      <p>Pages: ${book.pages}</p>
+                      <p>Read: ${book.read ? "Yes" : "No"}</p>`;
 
-        libraryContainer.appendChild(card);
+    libraryContainer.appendChild(card);
+
+    deleteBookBtn.addEventListener("click", () => {
+        myLibrary.pop();
+        renderLibrary();
     });
+  });
 };
 
-deleteBookBtn.addEventListener("click", () => {
-    myLibrary.pop();
-    renderLibrary();
-});
-
-
-
+renderLibrary();
 
 
 
