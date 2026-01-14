@@ -16,6 +16,7 @@ html,
 body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
+    background-color: #ccc;
 }
 
 /* Container */
@@ -35,4 +36,44 @@ body {
 
 #form-container {
     padding: 1rem;
+}
+
+.input-box {
+    padding: 1rem;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+}
+
+.input-box:focus {
+    border: none;
+    box-shadow: 0 0 2px 2px var(--main-theme-color);
+}
+
+.book-card {
+  border: 1px solid #555555;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  width: 200px;
+}
+
+button {
+    padding: 5px 10px;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: var(--main-theme-color);
+    color: var(--light-bg-color);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95)
 }
