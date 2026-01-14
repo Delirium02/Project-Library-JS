@@ -19,18 +19,24 @@ function addBookToLibrary(title, author, pages, read) {
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
 
 addBookBtn.addEventListener("click", () => {
-  const getTitle = document.getElementById("title-input").value;
-  const getAuthor = document.getElementById("author-input").value;
-  const getPages = document.getElementById("pages-input").value;
-  const getRead = document.getElementById("read-input").checked;
-  addBookToLibrary(getTitle, getAuthor, getPages, getRead);
+  const title = document.getElementById("title-input").value;
+  const author = document.getElementById("author-input").value;
+  const pages = document.getElementById("pages-input").value;
+  const read = document.getElementById("read-input").checked;
 
-  if (getTitle == "" || getAuthor == "" || getPages == "") {
+  if (title == "" || author == "" || pages == "") {
     alert("Please fill in all fields.");
     return;
-  } else {
-    renderLibrary();
   }
+
+  addBookToLibrary(title, author, pages, read);
+
+  document.getElementById("title-input").value = "";
+  document.getElementById("author-input").value = "";
+  document.getElementById("pages-input").value = "";
+  document.getElementById("read-input").checked = false;
+
+  renderLibrary();
 });
 
 const renderLibrary = () => {
@@ -40,20 +46,30 @@ const renderLibrary = () => {
 
   myLibrary.forEach((book) => {
     const card = document.createElement("div");
+    card.className = "book-card"
 
     card.innerHTML = `<h2>${book.title}</h2>
                       <p>Author: ${book.author}</p>
                       <p>Pages: ${book.pages}</p>
-                      <p>Read: ${book.read ? "Yes" : "No"}</p>`;
+                      <p>Read: ${book.read ? "Yes" : "No"}</p>
+                      <button class="remove-btn" data-id="${book.id}">Remove Book</button>`;
 
     libraryContainer.appendChild(card);
 
-    deleteBookBtn.addEventListener("click", () => {
-        myLibrary.pop();
-        renderLibrary();
-    });
+    const removeBtn = card.querySelector(".remove-btn");
+    removeBtn.addEventListener("click", () => {
+      removeBook(book.id);
+    })
   });
 };
+
+function removeBook(id) {
+  const index = myLibrary.findIndex(book => book.id === id);
+  if (index > -1) {
+    myLibrary.splice(index, 1);
+  }
+  renderLibrary();
+}
 
 renderLibrary();
 
