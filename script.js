@@ -1,5 +1,15 @@
+const formContainer = document.getElementById("form-container");
+const submitBtn = document.getElementById("submit-btn");
+const cancelBtn = document.getElementById("cancel-btn");
 const addBookBtn = document.getElementById("add-book-btn");
-const deleteBookBtn = document.getElementById("delete-book-btn");
+
+addBookBtn.addEventListener("click", () => {
+  formContainer.style.display = "block";
+})
+
+cancelBtn.addEventListener("click", () => {
+  formContainer.style.display = "none";
+})
 
 const myLibrary = [];
 
@@ -18,7 +28,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 addBookToLibrary("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
 
-addBookBtn.addEventListener("click", () => {
+submitBtn.addEventListener("click", () => {
   const title = document.getElementById("title-input").value;
   const author = document.getElementById("author-input").value;
   const pages = document.getElementById("pages-input").value;
