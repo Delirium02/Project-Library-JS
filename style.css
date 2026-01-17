@@ -25,6 +25,7 @@ body {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+
 }
 
 .title { 
@@ -36,6 +37,10 @@ body {
 
 #form-container {
     padding: 1rem;
+    gap: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-box {
@@ -51,12 +56,14 @@ body {
 }
 
 .book-card {
-  border: 1px solid #555555;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 8px;
-  display: inline-block;
-  width: 200px;
+    border: 1px solid #555555;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    display: inline-block;
+    width: 200px;
+    align-content: center;
+    overflow: none;
 }
 
 button {
@@ -76,4 +83,8 @@ button:hover {
 
 button:active {
     transform: scale(0.95)
+}
+
+#add-book-btn {
+    align-items: center;
 }
