@@ -12,15 +12,16 @@
             <h1 class="title">My Library</h1>
             <div id="library-container"></div>
             
-            <div id="form-container">
+            <div id="form-container" style="display: none;">
                 <input class="input-box" type="text" id="title-input" placeholder="Title">
                 <input class="input-box" type="text" id="author-input" placeholder="Author">
                 <input class="input-box" type="number" id="pages-input" placeholder="Pages">
-                <label>
-                    <input type="checkbox" id="read-input">
-                    Read
-                </label>
+                <label><input type="checkbox" id="read-input"> Read?</label>
+            
+                <button id="submit-btn">Add to Library</button>
+                <button id="cancel-btn">Cancel</button>
             </div>
+            
             <button id="add-book-btn">Add Book</button>
         </section>
     </main>
