@@ -61,7 +61,8 @@ body {
     margin: 10px;
     border-radius: 8px;
     display: inline-block;
-    width: 200px;
+    width: auto;
+    height: auto;
     align-content: center;
     overflow: none;
 }
@@ -87,4 +88,6 @@ button:active {
 
 #add-book-btn {
     align-items: center;
+    padding: 0.5;
+    font-size: 14px;
 }
