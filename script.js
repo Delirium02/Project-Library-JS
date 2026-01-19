@@ -19,6 +19,10 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.id = crypto.randomUUID();
+
+  Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -61,15 +65,20 @@ const renderLibrary = () => {
     card.innerHTML = `<h2>${book.title}</h2>
                       <p>Author: ${book.author}</p>
                       <p>Pages: ${book.pages}</p>
-                      <p>Read: ${book.read ? "Yes" : "No"}</p>
+                      <p>Read: <span class="status-text">${book.read ? "Yes" : "No"}</span></p>
+                      <button class="toggle-read">Read Status</button>
                       <button class="remove-btn" data-id="${book.id}">Remove Book</button>`;
 
     libraryContainer.appendChild(card);
 
-    const removeBtn = card.querySelector(".remove-btn");
-    removeBtn.addEventListener("click", () => {
+    card.querySelector(".remove-btn").addEventListener("click", () => {
       removeBook(book.id);
     })
+
+    card.querySelector(".toggle-read").addEventListener("click", () => {
+      book.toggleRead();
+      renderLibrary();
+    });
   });
 };
 
@@ -82,44 +91,3 @@ function removeBook(id) {
 }
 
 renderLibrary();
-
-
-
-
-
-/*
-const libraryContainer = document.getElementById("library-container");
-
-const myLibrary = [];
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
-}
-
-Book.prototype.info = function () {
-    const hasRead = this.read ? "Already read" : "Has not yet read";
-    return `${this.title}, by ${this.author}, ${this.pages} pages, ${hasRead}`;
-};
-
-const addBookToLibrary = (book) => {
-    myLibrary.push(book);
-}
-
-const theGreatGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 180, false);
-addBookToLibrary(theGreatGatsby);
-
-
-function displayLibrary() {
-    myLibrary.forEach((book) => {
-        console.log(book.info());
-    });
-}
-
-displayLibrary();
-
-console.log(myLibrary[0].info());
-*/
